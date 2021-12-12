@@ -4305,6 +4305,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 5.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.0",
+      "Npgsql.EntityFramerworkCore.PostgreSQL >= *",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -4367,6 +4368,10 @@
             "target": "Package",
             "version": "[5.0.0, )"
           },
+          "Npgsql.EntityFramerworkCore.PostgreSQL": {
+            "target": "Package",
+            "version": "[*, )"
+          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[5.6.3, )"
@@ -4393,5 +4398,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "No se encuentra el paquete Npgsql.EntityFramerworkCore.PostgreSQL. No existe ningún paquete con este id. en los orígenes: Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "Npgsql.EntityFramerworkCore.PostgreSQL",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

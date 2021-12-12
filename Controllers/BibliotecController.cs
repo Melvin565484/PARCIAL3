@@ -47,7 +47,63 @@ namespace webAPIParcial3.Controllers
         {
             _context.Bibliotecs.Add(bibliotec);
             await _context.SaveChangesAsync();
-            return CreatedAtAction("GetBibliotecByID", new{id=bibliotec.ISBN}, bibliotec);
+            return CreatedAtAction("GetBibliotecByID", new{id=bibliotec.BibliotecID}, bibliotec);
+        }
+
+        [HttpPut("{id}")]
+
+        public async Task<ActionResult<Bibliotec>> PutBibliotecs(int id, Bibliotec bibliotec)
+        {
+            if (id != bibliotec.BibliotecID)
+            {
+                return BadRequest();
+            }
+            _context.Entry(bibliotec).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch(DbUpdateConcurrencyException)
+            {
+                if (!BibliotecExists(id))
+                {
+                
+                return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+
+            }
+            return CreatedAtAction("GetBibliotecByID", new{id=bibliotec.BibliotecID}, bibliotec);
+        }
+        private bool BibliotecExists(int id)
+        {
+            return _context.Bibliotecs.Any(d=>d.BibliotecID==id);
+        }
+
+        [HttpDelete("{id}")]
+
+        public async Task<ActionResult<Bibliotec>> DeleteBibliotecs(int id)
+        {
+            var bibliotecs = await _context.Bibliotecs.FindAsync(id);
+            if(bibliotecs==null)
+            {
+                return NotFound();
+            }
+
+            _context.Bibliotecs.Remove(bibliotecs);
+            await _context.SaveChangesAsync();
+            
+            return bibliotecs;
+
+        }
+
+        private bool BibliotecsExists(int id)
+        {
+            return _context.Bibliotecs.Any(d=>d.BibliotecID==id);
         }
     }
 }
